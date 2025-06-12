@@ -19,6 +19,7 @@
   sendmail.starttls
   tls
   tls-lwt
+  unix
   x509))
 
 (env

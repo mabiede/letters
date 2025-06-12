@@ -1,29 +1,20 @@
-FROM ocaml/opam:debian-12-ocaml-4.14
+FROM ocaml/opam:debian-12-ocaml-5.2
+COPY --from=hadolint/hadolint:latest-alpine /bin/hadolint /bin/hadolint
 
 USER root
 
-# copy hadolint
-COPY --from=hadolint/hadolint:latest-alpine /bin/hadolint /bin/hadolint
-
 # Avoid warnings by switching to noninteractive
-ENV DEBIAN_FRONTEND noninteractive
-ENV SIHL_ENV development
+ENV DEBIAN_FRONTEND=noninteractive
 
 # install packages
+# hadolint ignore=DL3008
 RUN apt-get update -q && apt-get install -yqq --no-install-recommends \
   # development dependencies
   inotify-tools \
-  zsh \
-  m4 \
-  wget \
-  #
-  # build dependencies (would also be installed by opam depext)
-  gcc \
-  jq \
-  libev-dev \
   libgmp-dev \
-  libssl-dev \
   pkg-config \
+  wget \
+  zsh \
   #
   # cleanup installations
   && apt-get autoremove -y \
@@ -33,9 +24,9 @@ RUN apt-get update -q && apt-get install -yqq --no-install-recommends \
 # add timezone
 RUN ln -fs /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 
-# WTF: https://github.com/mirage/ocaml-cohttp/issues/675
-RUN bash -c 'echo "http		80/tcp	www		# WorldWideWeb HTTP" >> /etc/services' \
-  && bash -c 'echo "https		443/tcp	www		# WorldWideWeb HTTPS" >> /etc/services'
+# link opam version
+# hadolint ignore=DL3059
+RUN ln -fs /usr/bin/opam-2.2 /usr/bin/opam
 
 USER opam
 
