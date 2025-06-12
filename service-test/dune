@@ -1,8 +1,18 @@
 (executable
  (name test)
- (libraries alcotest alcotest-lwt letters lwt yojson))
+ (libraries alcotest alcotest-lwt letters lwt sendmail yojson))
 
 (rule
  (alias runtest-all)
  (action
   (run ./test.exe)))
+
+(executable
+ (name test_mailspam)
+ (modules test_mailspam)
+ (libraries alcotest alcotest-lwt letters lwt sendmail yojson))
+
+(rule
+ (alias runtest-mailspam)
+ (action
+  (run ./test_mailspam.exe)))
