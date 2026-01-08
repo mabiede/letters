@@ -1,4 +1,4 @@
-FROM ocaml/opam:debian-12-ocaml-5.2
+FROM ocaml/opam:debian-12-ocaml-5.3
 COPY --from=hadolint/hadolint:latest-alpine /bin/hadolint /bin/hadolint
 
 USER root

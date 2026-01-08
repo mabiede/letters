@@ -28,7 +28,8 @@ depends: [
   "alcotest-lwt" {>= "1.1.0" & with-test}
   "yojson" {>= "1.7.0" & with-test}
   "odoc" {with-doc}
-  "ocamlformat" {dev}
+  "ocamlformat" {with-dev-setup}
+  "ocaml-lsp-server" {with-dev-setup}
 ]
 build: [
   ["dune" "subst"] {dev}

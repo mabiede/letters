@@ -1,6 +1,6 @@
 .PHONY: deps
 deps: ## Install development dependencies
-	opam install --deps-only --with-test --with-doc -y .
+	opam install --working-dir --with-dev-setup --with-test --with-doc --update-invariant -y .
 	eval $(opam env)
 
 .PHONY: create_switch

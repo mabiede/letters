@@ -68,6 +68,7 @@
   ;; Documentation dependencies
   (odoc :with-doc)
   ;; Dev dependencies
-  (ocamlformat :dev)))
+  (ocamlformat :with-dev-setup)
+  (ocaml-lsp-server :with-dev-setup)))
 
 (implicit_transitive_deps false)
