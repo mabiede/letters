@@ -1,4 +1,4 @@
-(lang dune 2.7)
+(lang dune 3.7)
 
 (name letters)
 
@@ -45,7 +45,7 @@
   (mrmime
    (>= 0.3.1))
   (ocaml
-   (>= 4.08.1))
+   (>= 4.13.0))
   (ptime
    (>= 0.8.5))
   (sendmail
