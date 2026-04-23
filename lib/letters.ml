@@ -69,13 +69,7 @@ let stream_of_string s =
 
 let str_to_colombe_address (str_address : string) : Colombe.Forward_path.t =
   match Emile.of_string str_address with
-  | Ok mailbox ->
-    (match
-       (Colombe_emile.to_forward_path mailbox
-        : (Colombe.Forward_path.t, [> `Msg of string ]) result)
-     with
-     | Ok address -> address
-     | Error _ -> raise (Invalid_email_address str_address))
+  | Ok mailbox -> Colombe_emile.to_forward_path mailbox
   | Error _ -> raise (Invalid_email_address str_address)
 ;;
 
@@ -238,14 +232,7 @@ let send =
       | Ok v -> v
       | Error (`Invalid (_, _)) -> failwith "Invalid sender address"
     in
-    let from_addr : Colombe.Reverse_path.t =
-      match
-        (Colombe_emile.to_reverse_path from_mailbox
-         : (Colombe.Reverse_path.t, [> `Msg of string ]) result)
-      with
-      | Ok v -> v
-      | Error (`Msg msg) -> failwith msg
-    in
+    let from_addr = Colombe_emile.to_reverse_path from_mailbox in
     let recipients =
       List.map
         (fun recipient ->

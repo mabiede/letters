@@ -29,7 +29,7 @@
   (ca-certs
    (>= 0.2.1))
   (colombe
-   (>= 0.7.0))
+   (>= 0.13.0))
   (containers
    (>= 3.13.1))
   (domain-name
@@ -49,7 +49,7 @@
   (ptime
    (>= 0.8.5))
   (sendmail
-   (>= 0.7.0))
+   (>= 0.13.0))
   (tls-lwt
    (>= 1.0.4))
   (tls
