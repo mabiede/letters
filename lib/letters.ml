@@ -77,7 +77,7 @@ let str_to_colombe_address str_address =
 ;;
 
 let domain_of_reverse_path = function
-  | None -> Rresult.R.error_msgf "reverse-path is empty"
+  | None -> Error (`Msg "reverse-path is empty")
   | Some { Colombe.Path.domain; _ } -> Ok domain
 ;;
 
@@ -294,6 +294,7 @@ let send =
           ~from:from_addr
           ~recipients
           ~mail
+          ()
       in
       match res with
       | Ok () -> Lwt.return ()
@@ -311,6 +312,7 @@ let send =
           ~from:from_addr
           ~recipients
           ~mail
+          ()
       in
       match res with
       | Ok () -> Lwt.return ()
